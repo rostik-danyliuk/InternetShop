@@ -23,7 +23,8 @@ public class Bill {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Bill(Client client, List<Selling> sellingList, List<Product> productList, double discount, double totalSum) {
+    public Bill(Client client, List<Selling> sellingList, List<Product> productList,
+                double discount, double totalSum) {
         this.client = client;
         this.sellingList = sellingList;
         this.productList = productList;

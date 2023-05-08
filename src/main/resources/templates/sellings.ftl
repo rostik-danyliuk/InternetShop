@@ -7,19 +7,23 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Reguar-Clients</title>
+    <title>Sellings</title>
 </head>
 <body background="аптвапттаптаптаптаптапт.jpg">
 <div>
     <table border="3" bgcolor="#a9a9a9">
         <tr>
             <th>Client</th>
-            <th>Registration</th>
+            <th>Product</th>
+            <th>DateOfSale</th>
+            <th>Discount</th>
         </tr>
-        <#list .vars['regular-clients'] as regular>
+        <#list sellings as selling>
             <tr>
-                <td>${regular.client}</td>
-                <td>${regular.registration}</td>
+                <td>${selling.client}</td>
+                <td>${selling.product}</td>
+                <td>${selling.dateOfSale}</td>
+                <td>${selling.discount}</td>
             </tr>
         </#list>
     </table>

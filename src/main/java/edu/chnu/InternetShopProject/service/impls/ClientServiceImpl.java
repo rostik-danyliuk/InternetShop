@@ -8,7 +8,9 @@ import edu.chnu.InternetShopProject.repository.ClientRepository;
 import edu.chnu.InternetShopProject.service.interfaces.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -24,9 +26,11 @@ public class ClientServiceImpl implements ClientService {
                 "Гагаріна, 1В", "+380660334123","ros.daniliuk111@gmail.com",
                 Regular.NOT_REGULAR));
     }
-    @Override
-    public void create() {
 
+    @Override
+    public Client create(Client client) {
+        client.setCreatedAt(LocalDateTime.now());
+        return repository.save(client);
     }
 
     @Override
@@ -40,8 +44,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void update() {
-
+    public Client update(Client client) {
+        String id = client.getId();
+        Client client1 = this.get(id);
+        client.setCreatedAt(client1.getCreatedAt());
+        client.setUpdatedAt(LocalDateTime.now());
+        return repository.save(client);
     }
 
     @Override

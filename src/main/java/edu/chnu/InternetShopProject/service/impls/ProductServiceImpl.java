@@ -7,6 +7,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +26,8 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
     public Product create(Product product) {
-
-
-        return null;
+        product.setCreatedAt(LocalDateTime.now());
+        return repository.save(product);
     }
 
     @Override
@@ -42,6 +42,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product update(Product product) {
+        String id = product.getId();
+        Product product1 = this.get(id);
+        product.setCreatedAt(product1.getCreatedAt());
+        product.setUpdatedAt(LocalDateTime.now());
         return repository.save(product);
     }
 

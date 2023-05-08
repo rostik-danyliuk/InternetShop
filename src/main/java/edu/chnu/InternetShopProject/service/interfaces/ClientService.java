@@ -5,12 +5,12 @@ import edu.chnu.InternetShopProject.model.Client;
 import java.util.List;
 
 public interface ClientService {
-    void create();
+    Client create(Client client);
 
     List<Client> getAll();
 
     Client get(String id);
 
-    void update();
+    Client update(Client client);
     void delete(String id);
 }

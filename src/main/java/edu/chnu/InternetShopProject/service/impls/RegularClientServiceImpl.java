@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,7 +22,7 @@ public class RegularClientServiceImpl implements RegularClientService {
     @Autowired
     ClientService clientService;
 
-    @PostConstruct
+    //@PostConstruct
     public void init(){
         repository.save(new RegularClient(clientService.get("6453d8e03a5c95e01fbb8700"),
                 LocalDate.now()));
@@ -29,7 +30,8 @@ public class RegularClientServiceImpl implements RegularClientService {
 
     @Override
     public RegularClient create(RegularClient regularClient) {
-        return null;
+        regularClient.setCreatedAt(LocalDateTime.now());
+        return repository.save(regularClient);
     }
 
     @Override
@@ -44,6 +46,10 @@ public class RegularClientServiceImpl implements RegularClientService {
 
     @Override
     public RegularClient update(RegularClient regularClient) {
+        String id = regularClient.getId();
+        RegularClient client = this.get(id);
+        regularClient.setCreatedAt(client.getCreatedAt());
+        regularClient.setUpdatedAt(LocalDateTime.now());
         return repository.save(regularClient);
     }
 

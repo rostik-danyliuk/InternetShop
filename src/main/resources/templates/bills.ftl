@@ -7,24 +7,33 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Reguar-Clients</title>
+    <title>Bills</title>
 </head>
 <body background="аптвапттаптаптаптаптапт.jpg">
 <div>
     <table border="3" bgcolor="#a9a9a9">
         <tr>
             <th>Client</th>
-            <th>Registration</th>
+            <th>SellingList</th>
+            <th>ProductList</th>
+            <th>Discount</th>
+            <th>TotalSum</th>
         </tr>
-        <#list .vars['regular-clients'] as regular>
+        <#list bills as bill>
             <tr>
-                <td>${regular.client}</td>
-                <td>${regular.registration}</td>
+                <td>${bill.client}</td>
+                <td><#list bill.sellingList as item>
+                    ${item}
+                    </#list></td>
+                <td><#list bill.productList as item>
+                        ${item}
+                    </#list></td>
+                <td>${bill.discount}</td>
+                <td>${bill.totalSum}</td>
             </tr>
         </#list>
     </table>
 
 </div>
-
 </body>
 </html>
